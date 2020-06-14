@@ -1,0 +1,200 @@
+{
+	"id": "ee20f703-ecb1-46f0-fb04-af2ea0abbe04",
+	"name": "senior-hotel-requests",
+	"description": "",
+	"order": [
+		"bb15ab0a-c310-4be7-9ff0-f4ae6ad4a23d",
+		"2a50c886-a092-f2ca-6db7-ade3521d0844",
+		"8019831c-197a-6892-df4f-385eeb7fce7e",
+		"c95bb96d-bc96-8c1f-65ad-8e7dea180acc",
+		"62ce3613-5a07-fe87-3a6b-27768ad869f0",
+		"53eeb251-74ba-ac64-768a-57d62511c330"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1591754769768,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "2a50c886-a092-f2ca-6db7-ade3521d0844",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8888/seniorhotel/api/v1/getUserClientById/2",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1592087592327,
+			"name": "getUserClientById",
+			"description": "",
+			"collectionId": "ee20f703-ecb1-46f0-fb04-af2ea0abbe04",
+			"responses": [],
+			"rawModeData": "{\"name\":\"Rafael\",\"lastName\":\"Ramos\",\"phone\":\"0000000000\",\"document\":\"000000000000\",\"haveCar\":true}"
+		},
+		{
+			"id": "53eeb251-74ba-ac64-768a-57d62511c330",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8888/seniorhotel/api/v1/getBookingUserClientByPhone/991737299",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1592151110210,
+			"name": "getBookingUserClientByPhone",
+			"description": "",
+			"collectionId": "ee20f703-ecb1-46f0-fb04-af2ea0abbe04",
+			"responses": [],
+			"rawModeData": "{\"name\":\"Rafael\",\"lastName\":\"Ramos\",\"phone\":\"99999999\",\"document\":\"999999999\",\"haveCar\":true}"
+		},
+		{
+			"id": "62ce3613-5a07-fe87-3a6b-27768ad869f0",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8888/seniorhotel/api/v1/getBookingUserClientByDocument/OPEN",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1592150890018,
+			"name": "getBookingUserClientByDocument",
+			"description": "",
+			"collectionId": "ee20f703-ecb1-46f0-fb04-af2ea0abbe04",
+			"responses": [],
+			"rawModeData": "{\"name\":\"Rafaael\",\"lastName\":\"Ramos\",\"phone\":\"888888888\",\"document\":\"2222222222\",\"haveCar\":true}"
+		},
+		{
+			"id": "8019831c-197a-6892-df4f-385eeb7fce7e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8888/seniorhotel/api/v1/getAllBookingUserClientStatus/OPEN",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1592107031795,
+			"name": "getAllBookingUserClientStatus",
+			"description": "",
+			"collectionId": "ee20f703-ecb1-46f0-fb04-af2ea0abbe04",
+			"responses": [],
+			"rawModeData": "{\"name\":\"Gael\",\"lastName\":\"Ramos\",\"phone\":\"6666666666\",\"document\":\"66666666666\",\"haveCar\":true}"
+		},
+		{
+			"id": "bb15ab0a-c310-4be7-9ff0-f4ae6ad4a23d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8888/seniorhotel/api/v1/createBooking",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1592178453747,
+			"name": "createUserBooking",
+			"description": "",
+			"collectionId": "ee20f703-ecb1-46f0-fb04-af2ea0abbe04",
+			"responses": [],
+			"rawModeData": "{\n  \"status\": \"OPEN\",\n  \"roomNumber\": \"203\",\n  \"initialDay\": \"2020-06-04T10:17:00\",\n  \"finalDay\": \"2020-06-05T16:29:00\",\n  \"valueConsumedHotel\": 100,\n  \"userClient\": {\n    \"name\": \"Joao\",\n    \"lastName\": \"Silva\",\n    \"phone\": \"739999999\",\n    \"document\": \"88888888\",\n    \"haveCar\": true\n  }\n}"
+		},
+		{
+			"id": "c95bb96d-bc96-8c1f-65ad-8e7dea180acc",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8888/seniorhotel/api/v1/getBookingUserClientByName/Joao",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1592178590016,
+			"name": "getBookingUserClientByName",
+			"description": "",
+			"collectionId": "ee20f703-ecb1-46f0-fb04-af2ea0abbe04",
+			"responses": [],
+			"rawModeData": "{\"name\":\"Gael\",\"lastName\":\"Ramos\",\"phone\":\"88889898898\",\"document\":\"1212112121212\",\"haveCar\":true}"
+		}
+	]
+}
