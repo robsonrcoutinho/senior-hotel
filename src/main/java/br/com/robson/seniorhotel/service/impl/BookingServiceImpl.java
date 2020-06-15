@@ -32,8 +32,8 @@ public class BookingServiceImpl implements BookingService {
     public Iterable<Booking> getAllStatusBooking(STATUS status){
         Query query = entityManager.createQuery("Select m from Booking m where m.status = :status");
         query.setParameter("status",  status);
-        //calculateBooking(query.getResultList());
-        return query.getResultList();
+        List<Booking> bookings = query.getResultList();
+        return calculateListBooking(bookings);
     }
 
     public Booking getBookingUserClientByPhone(String phone){
@@ -59,28 +59,90 @@ public class BookingServiceImpl implements BookingService {
 
     private Booking calculateBooking(Object value) {
         Booking booking = (Booking) value;
-         if(value instanceof Booking){
+        List<BigDecimal> decimals = new ArrayList<>();
+        LocalDate initialDay = LocalDate.from(((Booking)value).getInitialDay());
+        LocalDate  finalDay = LocalDate.from(((Booking)value).getFinalDay());
+
+        DateRangeBetween datesBetween = new DateRangeBetween(initialDay, finalDay);
+        List<LocalDate> dates = datesBetween.toList();
+        for (LocalDate d : dates){
+            DayOfWeek day = DayOfWeek.of(d.get(ChronoField.DAY_OF_WEEK));
+            switch (day) {
+                case SATURDAY:
+                case SUNDAY:
+                    if(booking.getUserClient().isHaveCar()){
+                        decimals.add(new BigDecimal(170));
+                    }else{
+                        decimals.add(new BigDecimal(150));
+                    }
+                    break;
+                default:
+                    if(booking.getUserClient().isHaveCar()){
+                        decimals.add(new BigDecimal(135));
+                    }else{
+                        decimals.add(new BigDecimal(120));
+                    }
+                    break;
+            }
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalTime specificHour = LocalTime.of(16, 30, 00);
+
+        if((now.getHour() > specificHour.getHour()) || ((now.getHour() == specificHour.getHour())  && (now.getMinute() > specificHour.getMinute()))){
+            DayOfWeek day = DayOfWeek.of(now.get(ChronoField.DAY_OF_WEEK));
+            switch (day) {
+                case SATURDAY:
+                case SUNDAY:
+                    if(booking.getUserClient().isHaveCar()){
+                        decimals.add(new BigDecimal(170));
+                    }else{
+                        decimals.add(new BigDecimal(150));
+                    }
+                    break;
+                default:
+                    if(booking.getUserClient().isHaveCar()){
+                        decimals.add(new BigDecimal(135));
+                    }else{
+                        decimals.add(new BigDecimal(120));
+                    }
+                    break;
+            }
+        }
+
+            BigDecimal sum = decimals.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+            booking.setValueConsumedHotel(sum);
+
+
+        return booking;
+    }
+
+
+    private List<Booking> calculateListBooking(List<Booking> values) {
+
+        List<Booking> bookings = new ArrayList<>();
+        for(Booking booking : values) {
             List<BigDecimal> decimals = new ArrayList<>();
-            LocalDate initialDay = LocalDate.from(((Booking)value).getInitialDay());
-            LocalDate  finalDay = LocalDate.from(((Booking)value).getFinalDay());
+            LocalDate initialDay = LocalDate.from(booking.getInitialDay());
+            LocalDate finalDay = LocalDate.from(booking.getFinalDay());
 
             DateRangeBetween datesBetween = new DateRangeBetween(initialDay, finalDay);
             List<LocalDate> dates = datesBetween.toList();
-            for (LocalDate d : dates){
+            for (LocalDate d : dates) {
                 DayOfWeek day = DayOfWeek.of(d.get(ChronoField.DAY_OF_WEEK));
                 switch (day) {
                     case SATURDAY:
                     case SUNDAY:
-                        if(booking.getUserClient().isHaveCar()){
+                        if (booking.getUserClient().isHaveCar()) {
                             decimals.add(new BigDecimal(170));
-                        }else{
+                        } else {
                             decimals.add(new BigDecimal(150));
                         }
                         break;
                     default:
-                        if(booking.getUserClient().isHaveCar()){
+                        if (booking.getUserClient().isHaveCar()) {
                             decimals.add(new BigDecimal(135));
-                        }else{
+                        } else {
                             decimals.add(new BigDecimal(120));
                         }
                         break;
@@ -90,21 +152,21 @@ public class BookingServiceImpl implements BookingService {
             LocalDateTime now = LocalDateTime.now();
             LocalTime specificHour = LocalTime.of(16, 30, 00);
 
-            if((now.getHour() > specificHour.getHour()) || ((now.getHour() == specificHour.getHour())  && (now.getMinute() > specificHour.getMinute()))){
+            if ((now.getHour() > specificHour.getHour()) || ((now.getHour() == specificHour.getHour()) && (now.getMinute() > specificHour.getMinute()))) {
                 DayOfWeek day = DayOfWeek.of(now.get(ChronoField.DAY_OF_WEEK));
                 switch (day) {
                     case SATURDAY:
                     case SUNDAY:
-                        if(booking.getUserClient().isHaveCar()){
+                        if (booking.getUserClient().isHaveCar()) {
                             decimals.add(new BigDecimal(170));
-                        }else{
+                        } else {
                             decimals.add(new BigDecimal(150));
                         }
                         break;
                     default:
-                        if(booking.getUserClient().isHaveCar()){
+                        if (booking.getUserClient().isHaveCar()) {
                             decimals.add(new BigDecimal(135));
-                        }else{
+                        } else {
                             decimals.add(new BigDecimal(120));
                         }
                         break;
@@ -113,9 +175,9 @@ public class BookingServiceImpl implements BookingService {
 
             BigDecimal sum = decimals.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
             booking.setValueConsumedHotel(sum);
-
+            bookings.add(booking);
         }
-        return booking;
+        return bookings;
     }
 }
 
